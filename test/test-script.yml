@@ -1,0 +1,49 @@
+#performance testing using artillery.io
+
+config:
+  target: "http://localhost:5001"  
+  phases:
+    - duration: 60   # Duration of the test in seconds
+      arrivalRate: 10  # Number of new virtual users to spawn per second
+
+scenarios:
+  - flow:
+      - post:
+          url: "/api/users/register"
+          json:
+            username: "{{ random.words(1) }}"  # Generate random username
+            email: "{{ random.email }}"   # Generate random email
+            password: "password123"   # Static password for simplicity
+
+  - flow:
+      - post:
+          url: "/api/users/login"
+          json:
+            email: "user@example.com"   # Static user email
+            password: "password123"   # Static password
+
+  - flow:
+      - get:
+          url: "/api/courses"
+
+  - flow:
+      - get:
+          url: "/api/timetables"
+
+  - flow:
+      - get:
+          url: "/api/classrooms"
+
+  - flow:
+      - get:
+          url: "/api/bookings"
+
+  - flow:
+      - post:
+          url: "/api/enrollments/enroll"
+          json:
+            courseId: "{{ random.number(100) }}"  # Random course ID for testing
+
+  - flow:
+      - get:
+          url: "/api/notifications"
