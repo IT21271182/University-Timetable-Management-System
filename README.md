@@ -127,4 +127,4 @@ artillery run test-script.yaml
 - For detailed information on each API endpoint, refer to the API Endpoint Documentation section.
 - Make sure to configure environment variables properly for testing environments to avoid errors.
 - Contact the project maintainers for any additional assistance or information.
-- Editor : IT21271182 - Rathnayake R M U V 
+- Editor : Rathnayake R M U V 
